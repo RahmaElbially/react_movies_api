@@ -12,17 +12,17 @@ const MovieDetails = () => {
     // Get Movie Details
     const getMovieDetails = async () => {
         const res = await axios.get(
-        `https://api.themoviedb.org/3/movie/${param.id}?api_key=bda1fdd1627e3c01302219bbaa875fb4&language=ar`
+            `https://api.themoviedb.org/3/movie/${param.id}?api_key=986fe48ea074e0043dcaecde63df2164&language=ar`
         );
         setMovieDetails(res.data)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getMovieDetails();
-    },[])
+    }, [])
 
-  return (
-    <div>
+    return (
+        <div>
             <Row className="justify-content-center">
                 <Col md="12" xs="12" sm="12" className="mt-4 ">
                     <div className="card-detalis  d-flex align-items-center ">
@@ -66,26 +66,26 @@ const MovieDetails = () => {
                     md="10"
                     xs="12"
                     sm="12"
-                    className="mt-2 d-flex justify-content-center ">
+                    className="mt-2 mb-5 d-flex justify-content-center ">
                     <Link to={'/'}>
                         <button
-                                style={{ backgroundColor: "#b45b35", border: "none" }}
-                                className="btn btn-primary mx-2">
-                                عوده للرئيسيه
+                            style={{ backgroundColor: "#b45b35", border: "none" }}
+                            className="btn btn-primary mx-2">
+                            عوده للرئيسيه
                         </button>
                     </Link>
-                    
+
                     <a href={movieDetails.homepage}>
                         <button
-                                style={{ backgroundColor: "#b45b35", border: "none" }}
-                                className="btn btn-primary">
-                                مشاهده الفيلم
+                            style={{ backgroundColor: "#b45b35", border: "none" }}
+                            className="btn btn-primary">
+                            مشاهده الفيلم
                         </button>
                     </a>
                 </Col>
             </Row>
         </div>
-  )
+    )
 }
 
 export default MovieDetails

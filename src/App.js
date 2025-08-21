@@ -40,12 +40,13 @@ function App() {
       getAllMovies();
     } else {
       const res = await axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=986fe48ea074e0043dcaecde63df2164&language=ar&query=${word}`
+        `https://api.themoviedb.org/3/search/movie?api_key=986fe48ea074e0043dcaecde63df2164&language=ar&query=${word}`
       );
       setMovies(res.data.results);
       setPagesCount(res.data.total_pages);
     }
   }
+
 
   return (
     <div className="font color-body">
