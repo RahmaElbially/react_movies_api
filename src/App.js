@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import NavBar from "./Components/NavBar";
 import MoviesList from "./Components/MoviesList";
@@ -14,7 +14,7 @@ function App() {
   // Get All Movies
   const getAllMovies = async () => {
     const res = await axios.get(
-      'https://api.themoviedb.org/3/movie/popular?api_key=bda1fdd1627e3c01302219bbaa875fb4&language=ar'
+      'https://api.themoviedb.org/3/movie/popular?api_key=986fe48ea074e0043dcaecde63df2164&language=ar'
     );
     setMovies(res.data.results)
     setPagesCount(res.data.total_pages);
@@ -23,24 +23,24 @@ function App() {
   // Get Page Movies
   const getCurrentPage = async (pageNumber) => {
     const res = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=bda1fdd1627e3c01302219bbaa875fb4&language=ar&page=${pageNumber}`
+      `https://api.themoviedb.org/3/movie/popular?api_key=986fe48ea074e0043dcaecde63df2164&language=ar&page=${pageNumber}`
     );
     setMovies(res.data.results);
     setPagesCount(res.data.total_pages);
   }
 
 
-  useEffect(()=>{
+  useEffect(() => {
     getAllMovies();
-  },[])
+  }, [])
 
   // Search On Api 
   const search = async (word) => {
-    if (word === ""){
+    if (word === "") {
       getAllMovies();
-    }else{
+    } else {
       const res = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=bda1fdd1627e3c01302219bbaa875fb4&language=ar&query=${word}`
+        `https://api.themoviedb.org/3/movie/popular?api_key=986fe48ea074e0043dcaecde63df2164&language=ar&query=${word}`
       );
       setMovies(res.data.results);
       setPagesCount(res.data.total_pages);
@@ -49,18 +49,18 @@ function App() {
 
   return (
     <div className="font color-body">
-      <NavBar searchProp={search}/>
+      <NavBar searchProp={search} />
       <Container>
-      <BrowserRouter>
-        <Routes>
-            <Route path="/" 
-              element={<MoviesList moviesProps={movies} currentPageProp={getCurrentPage} pagesCountProp={pagesCount}/>} 
+        <BrowserRouter>
+          <Routes>
+            <Route path="/"
+              element={<MoviesList moviesProps={movies} currentPageProp={getCurrentPage} pagesCountProp={pagesCount} />}
             />
-            <Route path="/movie/:id" 
+            <Route path="/movie/:id"
               element={<MovieDetails />}
             />
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
       </Container>
     </div>
   );
